@@ -46,7 +46,6 @@ public class SendFinalizePayoutTxRequest extends TradeTask {
                         processModel.getId(),
                         processModel.getPayoutTxSignature(),
                         sellerPayoutAddress,
-                        trade.getLockTimeAsBlockHeight(),
                         processModel.getMyNodeAddress()
                 );
 

@@ -63,7 +63,6 @@ public class SignAndFinalizePayoutTx extends TradeTask {
                     buyerPayoutAddressString,
                     tradingPeer.getPayoutAddressString(),
                     multiSigKeyPair,
-                    trade.getLockTimeAsBlockHeight(),
                     buyerMultiSigPubKey,
                     tradingPeer.getMultiSigPubKey(),
                     trade.getArbitratorPubKey()

@@ -28,7 +28,6 @@ public class SellerSubView extends TradeSubView {
     private TradeWizardItem step2;
     private TradeWizardItem step3;
     private TradeWizardItem step4;
-    private TradeWizardItem step5;
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -50,23 +49,13 @@ public class SellerSubView extends TradeSubView {
         step1 = new TradeWizardItem(SellerStep1View.class, Res.get("portfolio.pending.step1.waitForConf"));
         step2 = new TradeWizardItem(SellerStep2View.class, Res.get("portfolio.pending.step2_seller.waitPaymentStarted"));
         step3 = new TradeWizardItem(SellerStep3View.class, Res.get("portfolio.pending.step3_seller.confirmPaymentReceived"));
-        step4 = new TradeWizardItem(SellerStep4View.class, Res.get("portfolio.pending.step4.waitPaymentUnlocked"));
-        step5 = new TradeWizardItem(SellerStep5View.class, Res.get("portfolio.pending.step5.completed"));
+        step4 = new TradeWizardItem(SellerStep4View.class, Res.get("portfolio.pending.step5.completed"));
 
 
-        if (model.getLockTime() > 0) {
-            addWizardsToGridPane(step1);
-            addWizardsToGridPane(step2);
-            addWizardsToGridPane(step3);
-            addWizardsToGridPane(step4);
-            addWizardsToGridPane(step5);
-
-        } else {
-            addWizardsToGridPane(step1);
-            addWizardsToGridPane(step2);
-            addWizardsToGridPane(step3);
-            addWizardsToGridPane(step5);
-        }
+        addWizardsToGridPane(step1);
+        addWizardsToGridPane(step2);
+        addWizardsToGridPane(step3);
+        addWizardsToGridPane(step4);
     }
 
 
@@ -84,7 +73,6 @@ public class SellerSubView extends TradeSubView {
             step2.setDisabled();
             step3.setDisabled();
             step4.setDisabled();
-            step5.setDisabled();
 
             switch (sellerState) {
                 case UNDEFINED:
@@ -110,18 +98,11 @@ public class SellerSubView extends TradeSubView {
                     tradeStepView = new SellerStep3bView(model);
                     contentPane.getChildren().setAll(tradeStepView);
                     break;
-                case WAIT_FOR_BROADCAST_AFTER_UNLOCK:
-                    step1.setCompleted();
-                    step2.setCompleted();
-                    step3.setCompleted();
-                    showItem(step4);
-                    break;
                 case REQUEST_WITHDRAWAL:
                     step1.setCompleted();
                     step2.setCompleted();
                     step3.setCompleted();
-                    step4.setCompleted();
-                    showItem(step5);
+                    showItem(step4);
                     break;
                 default:
                     log.warn("unhandled viewState " + sellerState);

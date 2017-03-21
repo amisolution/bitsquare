@@ -256,10 +256,6 @@ public class PendingTradesDataModel extends ActivatableDataModel {
         tradeWalletService.removeBlockChainListener(blockChainListener);
     }
 
-    public long getLockTime() {
-        return getTrade() != null ? getTrade().getLockTimeAsBlockHeight() : 0;
-    }
-
     public int getBestChainHeight() {
         return tradeWalletService.getBestChainHeight();
     }

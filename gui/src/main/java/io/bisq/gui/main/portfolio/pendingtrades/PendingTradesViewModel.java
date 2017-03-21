@@ -56,7 +56,6 @@ public class PendingTradesViewModel extends ActivatableWithDataModel<PendingTrad
         WAIT_FOR_BLOCKCHAIN_CONFIRMATION,
         REQUEST_START_FIAT_PAYMENT,
         WAIT_FOR_FIAT_PAYMENT_RECEIPT,
-        WAIT_FOR_BROADCAST_AFTER_UNLOCK,
         REQUEST_WITHDRAWAL
     }
 
@@ -66,7 +65,6 @@ public class PendingTradesViewModel extends ActivatableWithDataModel<PendingTrad
         WAIT_FOR_FIAT_PAYMENT_STARTED,
         REQUEST_CONFIRM_FIAT_PAYMENT_RECEIVED,
         WAIT_FOR_PAYOUT_TX,
-        WAIT_FOR_BROADCAST_AFTER_UNLOCK,
         REQUEST_WITHDRAWAL
     }
 
@@ -244,10 +242,6 @@ public class PendingTradesViewModel extends ActivatableWithDataModel<PendingTrad
         dataModel.removeBlockChainListener(blockChainListener);
     }
 
-    public long getLockTime() {
-        return dataModel.getLockTime();
-    }
-
     public String getPaymentMethod() {
         if (dataModel.getTrade() != null && dataModel.getTrade().getContract() != null)
             return Res.get(dataModel.getTrade().getContract().getPaymentMethodId());
@@ -354,12 +348,14 @@ public class PendingTradesViewModel extends ActivatableWithDataModel<PendingTrad
             case BUYER_RECEIVED_FIAT_PAYMENT_RECEIPT_MSG:
             case BUYER_COMMITTED_PAYOUT_TX:
             case BUYER_STARTED_SEND_PAYOUT_TX:
+                // TODO locktime
                 // TODO would need extra state for wait until msg arrived and PAYOUT_BROAD_CASTED gets called.
-                buyerState.set(PendingTradesViewModel.BuyerState.WAIT_FOR_BROADCAST_AFTER_UNLOCK);
-                break;
+                // buyerState.set(PendingTradesViewModel.BuyerState.WAIT_FOR_BROADCAST_AFTER_UNLOCK);
+                // break;
             case SELLER_RECEIVED_AND_COMMITTED_PAYOUT_TX:
-                sellerState.set(SellerState.WAIT_FOR_BROADCAST_AFTER_UNLOCK);
-                break;
+                // TODO locktime
+                //sellerState.set(SellerState.WAIT_FOR_BROADCAST_AFTER_UNLOCK);
+                // break;
             case PAYOUT_BROAD_CASTED:
                 sellerState.set(REQUEST_WITHDRAWAL);
                 buyerState.set(PendingTradesViewModel.BuyerState.REQUEST_WITHDRAWAL);

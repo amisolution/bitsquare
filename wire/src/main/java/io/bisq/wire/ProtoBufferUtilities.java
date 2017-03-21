@@ -498,7 +498,7 @@ public class ProtoBufferUtilities {
     private static Message getFinalizePayoutTxRequest(Messages.FinalizePayoutTxRequest finalizePayoutTxRequest) {
         return new FinalizePayoutTxRequest(finalizePayoutTxRequest.getTradeId(),
                 finalizePayoutTxRequest.getSellerSignature().toByteArray(),
-                finalizePayoutTxRequest.getSellerPayoutAddress(), finalizePayoutTxRequest.getLockTimeAsBlockHeight(),
+                finalizePayoutTxRequest.getSellerPayoutAddress(),
                 getNodeAddress(finalizePayoutTxRequest.getSenderNodeAddress()));
     }
 

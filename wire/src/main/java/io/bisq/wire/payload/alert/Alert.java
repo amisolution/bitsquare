@@ -18,7 +18,6 @@
 package io.bisq.wire.payload.alert;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Maps;
 import com.google.protobuf.ByteString;
 import io.bisq.common.app.Version;
 import io.bisq.common.crypto.Sig;
@@ -72,7 +71,6 @@ public final class Alert implements StoragePayload {
         this.message = message;
         this.isUpdateInfo = isUpdateInfo;
         this.version = version;
-        this.extraDataMap = Maps.newHashMap();
     }
 
     // Called from PB
