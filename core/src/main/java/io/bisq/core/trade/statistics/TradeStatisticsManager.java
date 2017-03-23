@@ -52,6 +52,8 @@ public class TradeStatisticsManager {
     }
 
     private void init(P2PService p2PService) {
+        statisticsStorage.setNumMaxBackupFiles(1);
+        
         if (dumpStatistics) {
             this.statisticsJsonStorage.initWithFileName("trade_statistics.json");
 
